@@ -2,6 +2,8 @@
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>EnoDev</title>
+<meta name="theme-color" content="#1B1536">
+<link rel="manifest" href="manifest.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#FFF8EE;--card:#fff;--ink:#241B3A;--mute:#7A7190;--line:#EBDFCB;--acc:#C8325F;--acc-ink:#fff}
@@ -85,12 +87,13 @@ var id=c.id,ph=[];$("msg").textContent="Envoi en cours… ne ferme pas la page."
 for(var i=0;i<D.ph.length;i++){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+i+".jpg",{method:"POST",headers:{apikey:K,"Content-Type":"image/jpeg"},body:D.ph[i].blob});if(!r.ok){var tx="";try{tx=(await r.text()).slice(0,140)}catch(z){}throw new Error("photo "+r.status+" "+tx)}ph.push({src:U+"/storage/v1/object/public/photos/"+id+"/"+i+".jpg",cap:D.ph[i].cap})}
 var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt})});
 if(!r2.ok)throw new Error("base "+r2.status);
-LINK=location.origin+location.pathname+"?s="+id;$("lk").textContent=LINK;$("cp").style.display="inline-block";$("msg").textContent="Ton lien est prêt ! Envoie-le-lui.";
+LINK=location.origin+location.pathname+"?s="+id;$("lk").textContent=LINK;$("cp").style.display="inline-block";$("msg").textContent="Ton lien est prêt ! Il reste actif 30 jours. Envoie-le-lui.";
 }catch(e){$("msg").textContent=e.user||("Échec de l’envoi ("+e.message+"). Réessaie.")}b.disabled=false};
 $("cp").onclick=async function(){try{if(navigator.share)await navigator.share({title:"Une surprise pour toi",url:LINK});else{await navigator.clipboard.writeText(LINK);$("msg").textContent="Lien copié !"}}catch(e){}};
 var sid=new URLSearchParams(location.search).get("s");
 if(sid){$("mk").style.display="none";$("pv").style.display="block";$("pvc").innerHTML='<div id="c"><p>Chargement…</p></div>';
 fetch(U+"/rest/v1/rpc/get_surprise",{method:"POST",headers:{apikey:K,"Content-Type":"application/json"},body:JSON.stringify({p_id:sid})}).then(function(r){return r.json()}).then(function(d){if(Array.isArray(d))d=d[0];
-if(!d||!d.id)throw 0;show({nm:d.name,ti:d.title,dt:d.event_date,ph:d.photos||[],lt:d.letters||[]},false)}).catch(function(){$("pvc").innerHTML='<div id="c"><div class="e">🔍</div><p>Cette surprise est introuvable.</p></div>'})}
+if(!d||!d.id)throw 0;show({nm:d.name,ti:d.title,dt:d.event_date,ph:d.photos||[],lt:d.letters||[]},false)}).catch(function(){$("pvc").innerHTML='<div id="c"><div class="e">🔍</div><p>Cette surprise n’est plus disponible. Elle a peut-être expiré.</p></div>'})}
 else try{var r=JSON.parse(localStorage.getItem("enodev-3")||"null");if(r){D.nm=r.nm||"";D.ti=r.ti||"";D.dt=r.dt||"";D.lt=r.lt||[];$("nm").value=D.nm;$("ti").value=D.ti;$("dt").value=D.dt;rl()}}catch(e){}
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script></body></html>
