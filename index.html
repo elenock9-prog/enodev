@@ -82,7 +82,7 @@ try{var r0=await fetch(U+"/rest/v1/rpc/claim_code",{method:"POST",headers:H,body
 if(!r0.ok)throw{user:/utilis/.test(c.message||"")?"Ce code a déjà servi.":"Code invalide."};
 if(D.ph.length>c.max_photos)throw{user:"Ton code permet "+c.max_photos+" photos maximum. Retire-en quelques-unes."};
 var id=c.id,ph=[];$("msg").textContent="Envoi en cours… ne ferme pas la page.";
-for(var i=0;i<D.ph.length;i++){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+i+".jpg",{method:"POST",headers:{apikey:K,"Content-Type":"image/jpeg","x-upsert":"true"},body:D.ph[i].blob});if(!r.ok)throw new Error("photo "+r.status);ph.push({src:U+"/storage/v1/object/public/photos/"+id+"/"+i+".jpg",cap:D.ph[i].cap})}
+for(var i=0;i<D.ph.length;i++){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+i+".jpg",{method:"POST",headers:{apikey:K,"Content-Type":"image/jpeg"},body:D.ph[i].blob});if(!r.ok){var tx="";try{tx=(await r.text()).slice(0,140)}catch(z){}throw new Error("photo "+r.status+" "+tx)}ph.push({src:U+"/storage/v1/object/public/photos/"+id+"/"+i+".jpg",cap:D.ph[i].cap})}
 var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt})});
 if(!r2.ok)throw new Error("base "+r2.status);
 LINK=location.origin+location.pathname+"?s="+id;$("lk").textContent=LINK;$("cp").style.display="inline-block";$("msg").textContent="Ton lien est prêt ! Envoie-le-lui.";
