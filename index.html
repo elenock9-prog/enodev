@@ -24,17 +24,23 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
 .x{background:none;border:0;color:var(--mute);font-size:1.3rem;cursor:pointer;padding:6px}
 .lt{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.lt p{margin:2px 0;color:var(--mute);max-height:3.2em;overflow:hidden;white-space:pre-wrap}
 #lk{word-break:break-all;font-weight:600;margin-top:8px}
-#pv{position:fixed;inset:0;background:#1B1536;color:#FBF1E0;z-index:9;display:none;overflow:auto;font:17px/1.6 Georgia,serif}
+#pv{position:fixed;inset:0;background:var(--gb,#1B1536);color:#FBF1E0;z-index:9;display:none;overflow:auto;font:17px/1.6 Georgia,serif}
 #pv .cl{position:fixed;top:8px;right:8px;z-index:3}
 #c{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .7s}
-#c h1{font:700 2.2rem/1.1 Georgia,serif;margin:10px 0}#c p{color:#C9BFE6;margin:0 0 22px}
-#c button{background:#F5C26B;color:#241B3A;border:0;border-radius:99px;padding:14px 28px;font:700 1.05rem Georgia,serif;cursor:pointer}
+#c h1{font:700 2.2rem/1.1 Georgia,serif;margin:10px 0}#c p{color:var(--gp,#C9BFE6);margin:0 0 22px}
+#c button{background:var(--ga,#F5C26B);color:#241B3A;border:0;border-radius:99px;padding:14px 28px;font:700 1.05rem Georgia,serif;cursor:pointer}
 .e{font-size:4rem}#g{display:none;max-width:560px;margin:0 auto;padding:40px 16px 80px}
 #g.on{display:block;animation:f 1.2s}@keyframes f{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){#g.on{animation:none}}
 #g h2{text-align:center;font:700 1.8rem Georgia,serif;margin:0 0 30px;color:#FBF1E0}
 figure{background:#FFF8EE;color:#241B3A;margin:0 auto 34px;padding:10px 10px 14px;width:min(92%,380px);transform:rotate(var(--r));box-shadow:0 8px 24px #0006}
 figure img{width:100%;display:block}figcaption{text-align:center;padding-top:8px;font-style:italic}
 article{background:#FFF8EE;color:#241B3A;border-radius:6px;padding:22px;margin:0 0 28px}article h3{margin:0 0 10px;font-size:1.3rem}article p{margin:0;white-space:pre-wrap}
+.ft{text-align:center;margin:44px 0 0;font:15px Georgia,serif}.ft a{color:var(--ga,#F5C26B);text-decoration:underline}
+.rd{display:flex;gap:8px;align-items:center}.rd input[type=radio]{width:auto;margin:8px 0 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.chips button{border:2px solid var(--line);border-radius:99px;padding:8px 14px;background:var(--bg);color:var(--ink);font:600 .95rem Figtree,sans-serif;cursor:pointer}.chips button.on{border-color:var(--acc)}
+.gx{text-align:center;margin:0 0 34px}.gx h3{font:700 1.3rem Georgia,serif;margin:0 0 14px}
+.rb{display:block;width:100%;background:#FFF8EE;color:#241B3A;border:0;border-radius:10px;padding:12px;margin:0 0 8px;font:17px Georgia,serif;cursor:pointer;text-align:left}.rb.on{background:var(--ga,#F5C26B)}
+.sw{position:relative;height:110px;border-radius:12px;overflow:hidden;background:#FFF8EE;color:#241B3A}.sx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;font:700 1.15rem Georgia,serif}.sw canvas{position:absolute;inset:0;touch-action:none;transition:opacity .6s}
 </style></head><body>
 <main id="mk">
 <h1>EnoDev</h1><p class="sub">Prépare une surprise d’anniversaire qu’elle n’oubliera jamais.</p>
@@ -48,7 +54,20 @@ article{background:#FFF8EE;color:#241B3A;border-radius:6px;padding:22px;margin:0
 <input id="lt" placeholder="Titre de la lettre" aria-label="Titre de la lettre">
 <textarea id="lx" placeholder="Écris avec ton cœur…" aria-label="Texte de la lettre"></textarea>
 <button class="btn alt" id="al">Ajouter la lettre</button><div id="lts"></div></section>
-<section><h2>4. Envoie ta surprise</h2>
+<section><h2>4. Ajoute de la magie ✨</h2>
+<p class="hint" style="margin:0">Couleurs du cadeau</p>
+<div class="chips" id="chips"><button class="on" data-th="nuit">Nuit</button><button data-th="rose">Rose</button><button data-th="or">Or</button><button data-th="ocean">Océan</button></div>
+<label class="rd" style="margin-top:12px"><input type="checkbox" id="lk2" style="width:auto;margin:0"> Verrouiller le cadeau jusqu’au jour J (compte à rebours)</label>
+<p class="hint">10 raisons de l’aimer, une par ligne</p><textarea id="rs" style="min-height:100px" placeholder="Ton sourire&#10;Ta façon de rire…" aria-label="Raisons"></textarea>
+<p class="hint">Quiz sur votre histoire (5 questions max). Coche la bonne réponse.</p>
+<input id="qq" placeholder="Question" aria-label="Question">
+<label class="rd"><input type="radio" name="qc" value="0" checked><input id="qa0" placeholder="Réponse 1"></label>
+<label class="rd"><input type="radio" name="qc" value="1"><input id="qa1" placeholder="Réponse 2"></label>
+<label class="rd"><input type="radio" name="qc" value="2"><input id="qa2" placeholder="Réponse 3 (facultative)"></label>
+<button class="btn alt" id="aq">Ajouter la question</button><div id="qls"></div>
+<p class="hint">Carte à gratter</p>
+<input id="st" placeholder="Titre (ex. Gratte pour ta surprise)" aria-label="Titre de la carte"><input id="sx" placeholder="Message caché (ex. Dîner samedi à 20h !)" aria-label="Message caché"></section>
+<section><h2>5. Envoie ta surprise</h2>
 <input id="cd" placeholder="Ton code d’accès (ex. ENO-4K7Q2A)" aria-label="Code d’accès" autocapitalize="characters" autocomplete="off">
 <button class="btn alt" id="pvb">Voir comme elle</button> <button class="btn" id="go">Créer le lien</button>
 <p class="hint" id="msg"></p><div id="lk"></div><button class="btn alt" id="cp" style="display:none">Partager le lien</button></section>
@@ -56,16 +75,35 @@ article{background:#FFF8EE;color:#241B3A;border-radius:6px;padding:22px;margin:0
 <div id="pv"><button class="btn cl" id="pvx">Fermer</button><div id="pvc"></div></div>
 <script>
 var U="https://tpcsnsgorjywocpewtnl.supabase.co",K="sb_publishable_VBXYNuPyY3wDzcLtCpopBA_X_byMr5h";
-var D={nm:"",ti:"",dt:"",ph:[],lt:[]},LINK="";
+var D={nm:"",ti:"",dt:"",ph:[],lt:[],th:"nuit",qz:[]},LINK="";
 function $(i){return document.getElementById(i)}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function giftHTML(d){var n=esc(d.nm||"toi"),t=esc(d.ti||("Joyeux anniversaire, "+(d.nm||"mon amour"))),dd="";
 if(d.dt){try{dd=new Date(d.dt+"T12:00").toLocaleDateString("fr-FR",{day:"numeric",month:"long"})}catch(e){}}
 var ph=d.ph.map(function(p,i){return'<figure style="--r:'+((i%2?1:-1)*(1+i%3))+'deg"><img src="'+esc(p.src)+'" alt=""><figcaption>'+esc(p.cap)+'</figcaption></figure>'}).join("");
 var lt=d.lt.map(function(l){return'<article><h3>'+esc(l.t)+'</h3><p>'+esc(l.x)+'</p></article>'}).join("");
-return'<div id="c"><div class="e">🎁</div><h1>'+t+'</h1><p>'+(dd?dd+" · ":"")+'Une surprise t’attend, '+n+'.</p><button id="op">Ouvrir mon cadeau</button></div><div id="g"><h2>Pour toi, '+n+' ♥</h2>'+ph+lt+'</div>'}
-function show(d,close){var p=$("pv");$("pvc").innerHTML=giftHTML(d);p.style.display="block";p.scrollTop=0;$("pvx").style.display=close?"block":"none";
-$("op").onclick=function(){var c=$("c");c.style.opacity=0;setTimeout(function(){c.style.display="none";$("g").className="on";p.scrollTop=0},700)}}
+return'<div id="c"><div class="e">🎁</div><h1>'+t+'</h1><p>'+(dd?dd+" · ":"")+'Une surprise t’attend, '+n+'.</p><p id="cd2"></p><button id="op">Ouvrir mon cadeau</button></div><div id="g"><h2>Pour toi, '+n+' ♥</h2>'+ph+lt+xh(d.ex||{})+'<p class="ft"><a href="'+esc(location.origin+location.pathname)+'">Crée ta propre surprise sur EnoDev 🎁</a></p></div>'}
+var TH={nuit:{b:"#1B1536",a:"#F5C26B",p:"#C9BFE6"},rose:{b:"#3A0F25",a:"#FF8FB1",p:"#F3C6D5"},or:{b:"#2B1D0E",a:"#F2B134",p:"#E8D3A8"},ocean:{b:"#0B2A3A",a:"#5ED3C3",p:"#B9DDE6"}};
+function xh(x){var h="";
+if(x.rs&&x.rs.length)h+='<div class="gx"><h3>'+x.rs.length+' raisons de t’aimer ♥</h3>'+x.rs.map(function(r,i){return'<button class="rb" data-r="'+esc(r)+'" onclick="this.className=\'rb on\';this.textContent=this.dataset.r">❤ Raison n°'+(i+1)+'</button>'}).join("")+'</div>';
+if(x.qz&&x.qz.length)h+='<div class="gx"><h3>Notre petit quiz 💭</h3><div id="qz"></div></div>';
+if(x.sc&&x.sc.x)h+='<div class="gx"><h3>'+esc(x.sc.t||"Gratte pour découvrir ta surprise")+'</h3><div class="sw"><div class="sx">'+esc(x.sc.x)+'</div><canvas id="cv"></canvas></div></div>';
+return h}
+function qzInit(q){var b=$("qz");if(!b||!q.length)return;var i=0;
+function r(){if(i>=q.length){b.innerHTML="<p>Bravo, tu connais bien notre histoire ! ❤</p>";return}
+var c=q[i];b.innerHTML="<p><b>"+esc(c.q)+"</b></p>"+c.o.map(function(o,k){return'<button class="rb" data-k="'+k+'">'+esc(o)+"</button>"}).join("")+'<p id="qm"></p>';
+Array.prototype.forEach.call(b.querySelectorAll("button"),function(x){x.onclick=function(){if(+x.dataset.k===c.a){x.className="rb on";$("qm").textContent="Bravo ! 🎉";i++;setTimeout(r,900)}else{x.disabled=true;x.style.opacity=.4;$("qm").textContent="Presque… réessaie 😉"}}})}
+r()}
+function scInit(){var cv=$("cv");if(!cv)return;var w=cv.parentNode.clientWidth,h=110;cv.width=w;cv.height=h;var x=cv.getContext("2d"),g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,"#b9a8e0");g.addColorStop(1,"#8f7cc4");x.fillStyle=g;x.fillRect(0,0,w,h);x.fillStyle="#fff";x.font="700 18px Georgia";x.textAlign="center";x.fillText("Gratte ici ✨",w/2,h/2+6);
+var dn=false,n=0;function sc(e){if(!dn)return;var r=cv.getBoundingClientRect();x.globalCompositeOperation="destination-out";x.beginPath();x.arc(e.clientX-r.left,e.clientY-r.top,20,0,7);x.fill();if(++n%10==0){var d=x.getImageData(0,0,w,h).data,c=0;for(var i=3;i<d.length;i+=64)if(d[i]==0)c++;if(c>d.length/64*.5)cv.style.opacity=0}}
+cv.onpointerdown=function(e){dn=true;cv.setPointerCapture(e.pointerId);sc(e)};cv.onpointermove=sc;cv.onpointerup=function(){dn=false}}
+function show(d,close){var p=$("pv"),ex=d.ex||{},T=TH[ex.th]||TH.nuit;p.style.setProperty("--gb",T.b);p.style.setProperty("--ga",T.a);p.style.setProperty("--gp",T.p);
+$("pvc").innerHTML=giftHTML(d);p.style.display="block";p.scrollTop=0;$("pvx").style.display=close?"block":"none";
+var op=$("op"),tg=d.dt?new Date(d.dt+"T00:00"):null,tm;
+function tick(){var ms=tg-new Date();if(ms<=0){clearInterval(tm);$("cd2").textContent="";op.disabled=false;op.style.opacity=1;return}
+var dj=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);$("cd2").textContent=(ex.lock&&!close?"Ton cadeau s’ouvre dans ":"Plus que ")+dj+" j "+h+" h "+m+" min"+(ex.lock&&!close?"":" avant ton anniversaire 🎂")}
+if(tg&&tg>new Date()){if(ex.lock&&!close){op.disabled=true;op.style.opacity=.5}tick();tm=setInterval(tick,30000)}
+op.onclick=function(){if(op.disabled)return;var c=$("c");c.style.opacity=0;setTimeout(function(){c.style.display="none";$("g").className="on";p.scrollTop=0;qzInit(ex.qz||[]);scInit()},700)}}
 function rp(){$("phs").innerHTML=D.ph.map(function(p,i){return'<div class="ph"><img src="'+p.src+'" alt=""><input data-c="'+i+'" value="'+esc(p.cap)+'" placeholder="Un mot sur ce souvenir" aria-label="Légende"><button class="x" data-dp="'+i+'" aria-label="Retirer">×</button></div>'}).join("")}
 function rl(){$("lts").innerHTML=D.lt.map(function(l,i){return'<div class="lt"><button class="x" style="float:right" data-dl="'+i+'" aria-label="Supprimer">×</button><b>'+esc(l.t)+'</b><p>'+esc(l.x)+'</p></div>'}).join("")}
 function sv(){try{localStorage.setItem("enodev-3",JSON.stringify({nm:D.nm,ti:D.ti,dt:D.dt,lt:D.lt}))}catch(e){}}
@@ -74,8 +112,16 @@ $("pf").addEventListener("change",function(){var fs=Array.prototype.slice.call(t
 c.toBlob(function(b){if(D.ph.length<10){D.ph.push({blob:b,src:URL.createObjectURL(b),cap:""});rp()}},"image/jpeg",.78);URL.revokeObjectURL(u)};im.src=u})});
 $("phs").addEventListener("input",function(e){if(e.target.dataset.c!=null)D.ph[+e.target.dataset.c].cap=e.target.value});
 $("al").onclick=function(){var t=$("lt").value.trim(),x=$("lx").value.trim();if(!x){$("lx").focus();return}D.lt.push({t:t||"Pour toi",x:x});$("lt").value="";$("lx").value="";sv();rl()};
-document.addEventListener("click",function(e){var d=e.target.dataset;if(d.dp!=null){D.ph.splice(+d.dp,1);rp()}if(d.dl!=null){D.lt.splice(+d.dl,1);sv();rl()}});
-$("pvb").onclick=function(){show(D,true)};$("pvx").onclick=function(){$("pv").style.display="none"};
+document.addEventListener("click",function(e){var d=e.target.dataset;if(d.dp!=null){D.ph.splice(+d.dp,1);rp()}if(d.dl!=null){D.lt.splice(+d.dl,1);sv();rl()}
+if(d.dq!=null){D.qz.splice(+d.dq,1);rq()}
+if(d.th){D.th=d.th;Array.prototype.forEach.call($("chips").children,function(c){c.className=c.dataset.th==d.th?"on":""})}});
+function ex(){return{th:D.th,lock:$("lk2").checked,rs:$("rs").value.split("\n").map(function(t){return t.trim()}).filter(Boolean).slice(0,10),qz:D.qz,sc:{t:$("st").value.trim(),x:$("sx").value.trim()}}}
+function rq(){$("qls").innerHTML=D.qz.map(function(q,i){return'<div class="lt"><button class="x" style="float:right" data-dq="'+i+'" aria-label="Supprimer">×</button><b>'+esc(q.q)+"</b><p>"+esc(q.o[q.a])+" ✓</p></div>"}).join("")}
+$("aq").onclick=function(){var q=$("qq").value.trim(),o=[0,1,2].map(function(i){return $("qa"+i).value.trim()}),a=+document.querySelector("input[name=qc]:checked").value;
+if(!q||o.filter(Boolean).length<2||!o[a]){$("msg").textContent="Écris la question, au moins 2 réponses, et coche la bonne.";return}
+if(D.qz.length>=5){$("msg").textContent="5 questions maximum.";return}
+var oo=[],na=0;o.forEach(function(t,i){if(t){if(i==a)na=oo.length;oo.push(t)}});D.qz.push({q:q,o:oo,a:na});["qq","qa0","qa1","qa2"].forEach(function(i){$(i).value=""});$("msg").textContent="";rq()};
+$("pvb").onclick=function(){show(Object.assign({},D,{ex:ex()}),true)};$("pvx").onclick=function(){$("pv").style.display="none"};
 $("go").onclick=async function(){var cd=$("cd").value.trim(),H={apikey:K,"Content-Type":"application/json"};
 if(!cd){$("msg").textContent="Entre ton code d’accès.";$("cd").focus();return}
 if(!D.ph.length&&!D.lt.length){$("msg").textContent="Ajoute au moins une photo ou une lettre.";return}
@@ -85,7 +131,7 @@ if(!r0.ok)throw{user:/utilis/.test(c.message||"")?"Ce code a déjà servi.":"Cod
 if(D.ph.length>c.max_photos)throw{user:"Ton code permet "+c.max_photos+" photos maximum. Retire-en quelques-unes."};
 var id=c.id,ph=[];$("msg").textContent="Envoi en cours… ne ferme pas la page.";
 for(var i=0;i<D.ph.length;i++){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+i+".jpg",{method:"POST",headers:{apikey:K,"Content-Type":"image/jpeg"},body:D.ph[i].blob});if(!r.ok){var tx="";try{tx=(await r.text()).slice(0,140)}catch(z){}throw new Error("photo "+r.status+" "+tx)}ph.push({src:U+"/storage/v1/object/public/photos/"+id+"/"+i+".jpg",cap:D.ph[i].cap})}
-var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt})});
+var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt,p_extra:ex()})});
 if(!r2.ok)throw new Error("base "+r2.status);
 LINK=location.origin+location.pathname+"?s="+id;$("lk").textContent=LINK;$("cp").style.display="inline-block";$("msg").textContent="Ton lien est prêt ! Il reste actif 30 jours. Envoie-le-lui.";
 }catch(e){$("msg").textContent=e.user||("Échec de l’envoi ("+e.message+"). Réessaie.")}b.disabled=false};
@@ -93,7 +139,7 @@ $("cp").onclick=async function(){try{if(navigator.share)await navigator.share({t
 var sid=new URLSearchParams(location.search).get("s");
 if(sid){$("mk").style.display="none";$("pv").style.display="block";$("pvc").innerHTML='<div id="c"><p>Chargement…</p></div>';
 fetch(U+"/rest/v1/rpc/get_surprise",{method:"POST",headers:{apikey:K,"Content-Type":"application/json"},body:JSON.stringify({p_id:sid})}).then(function(r){return r.json()}).then(function(d){if(Array.isArray(d))d=d[0];
-if(!d||!d.id)throw 0;show({nm:d.name,ti:d.title,dt:d.event_date,ph:d.photos||[],lt:d.letters||[]},false)}).catch(function(){$("pvc").innerHTML='<div id="c"><div class="e">🔍</div><p>Cette surprise n’est plus disponible. Elle a peut-être expiré.</p></div>'})}
+if(!d||!d.id)throw 0;show({nm:d.name,ti:d.title,dt:d.event_date,ph:d.photos||[],lt:d.letters||[],ex:d.extra||{}},false)}).catch(function(){$("pvc").innerHTML='<div id="c"><div class="e">🔍</div><p>Cette surprise n’est plus disponible. Elle a peut-être expiré.</p></div>'})}
 else try{var r=JSON.parse(localStorage.getItem("enodev-3")||"null");if(r){D.nm=r.nm||"";D.ti=r.ti||"";D.dt=r.dt||"";D.lt=r.lt||[];$("nm").value=D.nm;$("ti").value=D.ti;$("dt").value=D.dt;rl()}}catch(e){}
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script></body></html>
