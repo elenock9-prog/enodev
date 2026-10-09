@@ -41,36 +41,64 @@ article{background:#FFF8EE;color:#241B3A;border-radius:6px;padding:22px;margin:0
 .gx{text-align:center;margin:0 0 34px}.gx h3{font:700 1.3rem Georgia,serif;margin:0 0 14px}
 .rb{display:block;width:100%;background:#FFF8EE;color:#241B3A;border:0;border-radius:10px;padding:12px;margin:0 0 8px;font:17px Georgia,serif;cursor:pointer;text-align:left}.rb.on{background:var(--ga,#F5C26B)}
 .sw{position:relative;height:110px;border-radius:12px;overflow:hidden;background:#FFF8EE;color:#241B3A}.sx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;font:700 1.15rem Georgia,serif}.sw canvas{position:absolute;inset:0;touch-action:none;transition:opacity .6s}
+.pgb{height:6px;background:var(--line);border-radius:9px;margin:12px 0 4px}.pgb div{height:100%;width:0;background:var(--acc);border-radius:9px;transition:width .3s}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}.nav .btn{margin:0}
+@keyframes si{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes bn{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes wg{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}}
+@keyframes fl{from{transform:translateY(0);opacity:0}10%{opacity:.5}to{transform:translateY(-115vh);opacity:0}}
+@keyframes pp{0%{transform:scale(.92)}60%{transform:scale(1.04)}100%{transform:none}}
+.stp{animation:si .35s ease both;border-top:4px solid var(--sc,var(--acc))}
+.ei{font-size:2.6rem;line-height:1.2;display:inline-block;animation:bn 2.4s ease-in-out infinite}
+.fh{position:fixed;bottom:-40px;font-size:1.4rem;pointer-events:none;animation:fl linear infinite;z-index:0}
+main{position:relative;z-index:1}.btn:active{transform:scale(.96)}.btn{transition:transform .15s}
+.e{display:inline-block;animation:wg 2.5s ease-in-out infinite}.rb.on{animation:pp .4s}
+.rv{opacity:0;translate:0 24px;transition:opacity .7s,translate .7s}.rv.in{opacity:1;translate:0 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;translate:none}}
 </style></head><body>
 <main id="mk">
 <h1>EnoDev</h1><p class="sub">Prépare une surprise d’anniversaire qu’elle n’oubliera jamais.</p>
-<section><h2>1. Pour qui ?</h2>
+<div class="pgb"><div id="pg"></div></div><p class="hint" id="pt"></p>
+<section class="stp"><h2>Pour qui ?</h2>
 <input id="nm" placeholder="Son prénom" aria-label="Son prénom">
 <input id="ti" placeholder="Titre : Joyeux anniversaire, mon amour" aria-label="Titre">
-<input id="dt" type="date" aria-label="Date de l’anniversaire"></section>
-<section><h2>2. Vos souvenirs</h2><p class="hint" style="margin:0">Jusqu’à 10 photos, avec un mot pour chacune.</p>
+<input id="dt" type="date" aria-label="Date de l’anniversaire">
+<p class="hint">Couleurs du cadeau</p>
+<div class="chips" id="chips"><button class="on" data-th="nuit">Nuit</button><button data-th="rose">Rose</button><button data-th="or">Or</button><button data-th="ocean">Océan</button></div>
+<label class="rd" style="margin-top:12px"><input type="checkbox" id="lk2" style="width:auto;margin:0"> Verrouiller le cadeau jusqu’au jour J (compte à rebours)</label></section>
+<section class="stp"><h2>Vos souvenirs</h2><p class="hint" style="margin:0">Jusqu’à 10 photos, avec un mot pour chacune.</p>
 <label class="pick">📷 Choisir des photos<input id="pf" type="file" accept="image/*" multiple></label><div id="phs"></div></section>
-<section><h2>3. Tes lettres</h2>
+<section class="stp"><h2>Tes lettres</h2>
 <input id="lt" placeholder="Titre de la lettre" aria-label="Titre de la lettre">
 <textarea id="lx" placeholder="Écris avec ton cœur…" aria-label="Texte de la lettre"></textarea>
 <button class="btn alt" id="al">Ajouter la lettre</button><div id="lts"></div></section>
-<section><h2>4. Ajoute de la magie ✨</h2>
-<p class="hint" style="margin:0">Couleurs du cadeau</p>
-<div class="chips" id="chips"><button class="on" data-th="nuit">Nuit</button><button data-th="rose">Rose</button><button data-th="or">Or</button><button data-th="ocean">Océan</button></div>
-<label class="rd" style="margin-top:12px"><input type="checkbox" id="lk2" style="width:auto;margin:0"> Verrouiller le cadeau jusqu’au jour J (compte à rebours)</label>
-<p class="hint">10 raisons de l’aimer, une par ligne</p><textarea id="rs" style="min-height:100px" placeholder="Ton sourire&#10;Ta façon de rire…" aria-label="Raisons"></textarea>
-<p class="hint">Quiz sur votre histoire (5 questions max). Coche la bonne réponse.</p>
+<section class="stp"><h2>Raisons de l’aimer</h2><p class="hint" style="margin:0">Une raison par ligne, 10 au maximum.</p>
+<textarea id="rs" style="min-height:150px" placeholder="Ton sourire&#10;Ta façon de rire…" aria-label="Raisons"></textarea></section>
+<section class="stp"><h2>Quiz sur votre histoire</h2><p class="hint" style="margin:0">5 questions maximum. Coche la bonne réponse.</p>
 <input id="qq" placeholder="Question" aria-label="Question">
 <label class="rd"><input type="radio" name="qc" value="0" checked><input id="qa0" placeholder="Réponse 1"></label>
 <label class="rd"><input type="radio" name="qc" value="1"><input id="qa1" placeholder="Réponse 2"></label>
 <label class="rd"><input type="radio" name="qc" value="2"><input id="qa2" placeholder="Réponse 3 (facultative)"></label>
-<button class="btn alt" id="aq">Ajouter la question</button><div id="qls"></div>
-<p class="hint">Carte à gratter</p>
+<button class="btn alt" id="aq">Ajouter la question</button><div id="qls"></div></section>
+<section class="stp"><h2>Carte à gratter</h2><p class="hint" style="margin:0">Un message caché qu’elle découvre en grattant.</p>
 <input id="st" placeholder="Titre (ex. Gratte pour ta surprise)" aria-label="Titre de la carte"><input id="sx" placeholder="Message caché (ex. Dîner samedi à 20h !)" aria-label="Message caché"></section>
-<section><h2>5. Envoie ta surprise</h2>
+<section class="stp"><h2>Musique et vidéo</h2><p class="hint" style="margin:0">Musique : 8 Mo max. Vidéo : 20 Mo max, environ 20 secondes. Formule complète uniquement.</p>
+<label class="pick">🎵 Choisir une musique<input id="mf" type="file" accept="audio/*"></label><p class="hint" id="mn"></p>
+<label class="pick">🎬 Choisir une vidéo<input id="vf" type="file" accept="video/*"></label><p class="hint" id="vn"></p></section>
+<section class="stp"><h2>Paiement</h2><p class="hint" style="margin:0">Choisis ta formule, paie par Mobile Money, puis reçois ton code sur WhatsApp. Tu as déjà un code ? Touche Suivant.</p>
+<div class="chips" id="pls"><button class="on" data-pl="s">Simple · 500 FCFA</button><button data-pl="c">Complète · 1 000 FCFA</button></div>
+<p class="hint" id="pld">3 photos, lettres, raisons, quiz et carte à gratter.</p>
+<p class="hint" style="margin-bottom:0">Paie avec</p>
+<div class="chips" id="ops"><button class="on" data-op="Flooz">Flooz</button><button data-op="T-Money">T-Money</button></div>
+<div class="lt" id="pnum"></div>
+<button class="btn" id="wa">J’ai payé : envoyer la preuve</button>
+<p class="hint">Ton code arrive dès que le paiement est reçu.</p></section>
+<section class="stp"><h2>Envoie ta surprise</h2>
 <input id="cd" placeholder="Ton code d’accès (ex. ENO-4K7Q2A)" aria-label="Code d’accès" autocapitalize="characters" autocomplete="off">
 <button class="btn alt" id="pvb">Voir comme elle</button> <button class="btn" id="go">Créer le lien</button>
-<p class="hint" id="msg"></p><div id="lk"></div><button class="btn alt" id="cp" style="display:none">Partager le lien</button></section>
+<div id="lk"></div><button class="btn alt" id="cp" style="display:none">Partager le lien</button></section>
+<p class="hint" id="msg"></p>
+<div class="nav"><button class="btn alt" id="bk">Retour</button><button class="btn" id="nx">Suivant</button></div>
 </main>
 <div id="pv"><button class="btn cl" id="pvx">Fermer</button><div id="pvc"></div></div>
 <script>
@@ -85,10 +113,17 @@ var lt=d.lt.map(function(l){return'<article><h3>'+esc(l.t)+'</h3><p>'+esc(l.x)+'
 return'<div id="c"><div class="e">🎁</div><h1>'+t+'</h1><p>'+(dd?dd+" · ":"")+'Une surprise t’attend, '+n+'.</p><p id="cd2"></p><button id="op">Ouvrir mon cadeau</button></div><div id="g"><h2>Pour toi, '+n+' ♥</h2>'+ph+lt+xh(d.ex||{})+'<p class="ft"><a href="'+esc(location.origin+location.pathname)+'">Crée ta propre surprise sur EnoDev 🎁</a></p></div>'}
 var TH={nuit:{b:"#1B1536",a:"#F5C26B",p:"#C9BFE6"},rose:{b:"#3A0F25",a:"#FF8FB1",p:"#F3C6D5"},or:{b:"#2B1D0E",a:"#F2B134",p:"#E8D3A8"},ocean:{b:"#0B2A3A",a:"#5ED3C3",p:"#B9DDE6"}};
 function xh(x){var h="";
+if(x.music)h+='<audio id="au" loop src="'+esc(x.music)+'"></audio>';
 if(x.rs&&x.rs.length)h+='<div class="gx"><h3>'+x.rs.length+' raisons de t’aimer ♥</h3>'+x.rs.map(function(r,i){return'<button class="rb" data-r="'+esc(r)+'" onclick="this.className=\'rb on\';this.textContent=this.dataset.r">❤ Raison n°'+(i+1)+'</button>'}).join("")+'</div>';
 if(x.qz&&x.qz.length)h+='<div class="gx"><h3>Notre petit quiz 💭</h3><div id="qz"></div></div>';
 if(x.sc&&x.sc.x)h+='<div class="gx"><h3>'+esc(x.sc.t||"Gratte pour découvrir ta surprise")+'</h3><div class="sw"><div class="sx">'+esc(x.sc.x)+'</div><canvas id="cv"></canvas></div></div>';
+if(x.video)h+='<div class="gx"><h3>Une vidéo pour toi 🎬</h3><video controls playsinline preload="metadata" src="'+esc(x.video)+'" style="width:100%;border-radius:12px" onplay="var a=document.getElementById(\'au\');a&&a.pause()"></video></div>';
 return h}
+function confetti(p){if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;var c=document.createElement("canvas");c.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5";c.width=innerWidth;c.height=innerHeight;p.appendChild(c);var x=c.getContext("2d"),cl=["#F5C26B","#E8708A","#5ED3C3","#fff","#9b87f5"],a=[],t=0;
+for(var i=0;i<110;i++)a.push({x:c.width/2,y:c.height/2,vx:(Math.random()-.5)*14,vy:Math.random()*-14-3,s:4+Math.random()*5,c:cl[i%5],r:Math.random()*6});
+(function f(){x.clearRect(0,0,c.width,c.height);a.forEach(function(q){q.x+=q.vx;q.y+=q.vy;q.vy+=.35;q.r+=.2;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillStyle=q.c;x.fillRect(-q.s/2,-q.s/2,q.s,q.s*.6);x.restore()});if(++t<110)requestAnimationFrame(f);else c.remove()})()}
+function revealInit(p){if(!("IntersectionObserver" in window))return;var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}})},{root:p,threshold:.12});
+Array.prototype.forEach.call(p.querySelectorAll("#g figure,#g article,#g .gx"),function(e){e.classList.add("rv");o.observe(e)})}
 function qzInit(q){var b=$("qz");if(!b||!q.length)return;var i=0;
 function r(){if(i>=q.length){b.innerHTML="<p>Bravo, tu connais bien notre histoire ! ❤</p>";return}
 var c=q[i];b.innerHTML="<p><b>"+esc(c.q)+"</b></p>"+c.o.map(function(o,k){return'<button class="rb" data-k="'+k+'">'+esc(o)+"</button>"}).join("")+'<p id="qm"></p>';
@@ -97,13 +132,13 @@ r()}
 function scInit(){var cv=$("cv");if(!cv)return;var w=cv.parentNode.clientWidth,h=110;cv.width=w;cv.height=h;var x=cv.getContext("2d"),g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,"#b9a8e0");g.addColorStop(1,"#8f7cc4");x.fillStyle=g;x.fillRect(0,0,w,h);x.fillStyle="#fff";x.font="700 18px Georgia";x.textAlign="center";x.fillText("Gratte ici ✨",w/2,h/2+6);
 var dn=false,n=0;function sc(e){if(!dn)return;var r=cv.getBoundingClientRect();x.globalCompositeOperation="destination-out";x.beginPath();x.arc(e.clientX-r.left,e.clientY-r.top,20,0,7);x.fill();if(++n%10==0){var d=x.getImageData(0,0,w,h).data,c=0;for(var i=3;i<d.length;i+=64)if(d[i]==0)c++;if(c>d.length/64*.5)cv.style.opacity=0}}
 cv.onpointerdown=function(e){dn=true;cv.setPointerCapture(e.pointerId);sc(e)};cv.onpointermove=sc;cv.onpointerup=function(){dn=false}}
-function show(d,close){var p=$("pv"),ex=d.ex||{},T=TH[ex.th]||TH.nuit;p.style.setProperty("--gb",T.b);p.style.setProperty("--ga",T.a);p.style.setProperty("--gp",T.p);
+function show(d,close){var p=$("pv"),ex=d.ex||{},T=TH[ex.th]||TH.nuit;Array.prototype.forEach.call(p.querySelectorAll(".mb"),function(z){z.remove()});p.style.setProperty("--gb",T.b);p.style.setProperty("--ga",T.a);p.style.setProperty("--gp",T.p);
 $("pvc").innerHTML=giftHTML(d);p.style.display="block";p.scrollTop=0;$("pvx").style.display=close?"block":"none";
 var op=$("op"),tg=d.dt?new Date(d.dt+"T00:00"):null,tm;
 function tick(){var ms=tg-new Date();if(ms<=0){clearInterval(tm);$("cd2").textContent="";op.disabled=false;op.style.opacity=1;return}
 var dj=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);$("cd2").textContent=(ex.lock&&!close?"Ton cadeau s’ouvre dans ":"Plus que ")+dj+" j "+h+" h "+m+" min"+(ex.lock&&!close?"":" avant ton anniversaire 🎂")}
 if(tg&&tg>new Date()){if(ex.lock&&!close){op.disabled=true;op.style.opacity=.5}tick();tm=setInterval(tick,30000)}
-op.onclick=function(){if(op.disabled)return;var c=$("c");c.style.opacity=0;setTimeout(function(){c.style.display="none";$("g").className="on";p.scrollTop=0;qzInit(ex.qz||[]);scInit()},700)}}
+op.onclick=function(){if(op.disabled)return;var c=$("c");c.style.opacity=0;setTimeout(function(){c.style.display="none";$("g").className="on";p.scrollTop=0;qzInit(ex.qz||[]);scInit();confetti(p);revealInit(p);var a=$("au");if(a){a.play().catch(function(){});var b=document.createElement("button");b.className="btn alt mb";b.style.cssText="position:fixed;top:8px;left:8px;z-index:3;margin:0;background:#0006;color:#fff";b.textContent="🔊";b.onclick=function(){if(a.paused){a.play();b.textContent="🔊"}else{a.pause();b.textContent="🔇"}};p.appendChild(b)}},700)}}
 function rp(){$("phs").innerHTML=D.ph.map(function(p,i){return'<div class="ph"><img src="'+p.src+'" alt=""><input data-c="'+i+'" value="'+esc(p.cap)+'" placeholder="Un mot sur ce souvenir" aria-label="Légende"><button class="x" data-dp="'+i+'" aria-label="Retirer">×</button></div>'}).join("")}
 function rl(){$("lts").innerHTML=D.lt.map(function(l,i){return'<div class="lt"><button class="x" style="float:right" data-dl="'+i+'" aria-label="Supprimer">×</button><b>'+esc(l.t)+'</b><p>'+esc(l.x)+'</p></div>'}).join("")}
 function sv(){try{localStorage.setItem("enodev-3",JSON.stringify({nm:D.nm,ti:D.ti,dt:D.dt,lt:D.lt}))}catch(e){}}
@@ -114,14 +149,33 @@ $("phs").addEventListener("input",function(e){if(e.target.dataset.c!=null)D.ph[+
 $("al").onclick=function(){var t=$("lt").value.trim(),x=$("lx").value.trim();if(!x){$("lx").focus();return}D.lt.push({t:t||"Pour toi",x:x});$("lt").value="";$("lx").value="";sv();rl()};
 document.addEventListener("click",function(e){var d=e.target.dataset;if(d.dp!=null){D.ph.splice(+d.dp,1);rp()}if(d.dl!=null){D.lt.splice(+d.dl,1);sv();rl()}
 if(d.dq!=null){D.qz.splice(+d.dq,1);rq()}
+if(d.pl){PY.pl=d.pl;pay()}if(d.op){PY.op=d.op;pay()}
+if(d.cp){var cb=navigator.clipboard;if(cb)cb.writeText(d.cp).then(function(){$("msg").textContent="Numéro copié ✅"},function(){$("msg").textContent="Copie le numéro à la main."})}
+if(d.dm){D.mu=null;$("mn").textContent=""}if(d.dv){D.vd=null;$("vn").textContent=""}
 if(d.th){D.th=d.th;Array.prototype.forEach.call($("chips").children,function(c){c.className=c.dataset.th==d.th?"on":""})}});
-function ex(){return{th:D.th,lock:$("lk2").checked,rs:$("rs").value.split("\n").map(function(t){return t.trim()}).filter(Boolean).slice(0,10),qz:D.qz,sc:{t:$("st").value.trim(),x:$("sx").value.trim()}}}
+function ex(){return{music:D.mu?D.mu.p:"",video:D.vd?D.vd.p:"",th:D.th,lock:$("lk2").checked,rs:$("rs").value.split("\n").map(function(t){return t.trim()}).filter(Boolean).slice(0,10),qz:D.qz,sc:{t:$("st").value.trim(),x:$("sx").value.trim()}}}
 function rq(){$("qls").innerHTML=D.qz.map(function(q,i){return'<div class="lt"><button class="x" style="float:right" data-dq="'+i+'" aria-label="Supprimer">×</button><b>'+esc(q.q)+"</b><p>"+esc(q.o[q.a])+" ✓</p></div>"}).join("")}
+function fl(id,max,k,n,ic){$(id).onchange=function(){var f=this.files[0];this.value="";if(!f)return;if(f.size>max){$("msg").textContent="Fichier trop lourd ("+Math.round(max/1e6)+" Mo max).";return}$("msg").textContent="";D[k]={f:f,p:URL.createObjectURL(f)};$(n).innerHTML=ic+" "+esc(f.name)+' <button class="x" data-'+(k=="mu"?"dm":"dv")+'="1" aria-label="Retirer">×</button>'}}
+fl("mf",8e6,"mu","mn","🎵");fl("vf",2e7,"vd","vn","🎬");
+var PY={pl:"s",op:"Flooz"},NUM={"Flooz":["98364300","98 36 43 00"],"T-Money":["72729350","72 72 93 50"]},WA="22872729350";
+function pay(){Array.prototype.forEach.call($("pls").children,function(c){c.className=c.dataset.pl==PY.pl?"on":""});Array.prototype.forEach.call($("ops").children,function(c){c.className=c.dataset.op==PY.op?"on":""});
+$("pld").textContent=PY.pl=="c"?"10 photos, lettres, raisons, quiz, carte à gratter, musique et vidéo.":"3 photos, lettres, raisons, quiz et carte à gratter.";
+var n=NUM[PY.op];$("pnum").innerHTML="<b>"+PY.op+" : "+n[1]+'</b> <button class="btn alt" style="margin:0 0 0 8px;padding:6px 12px" data-cp="'+n[0]+'">Copier</button><p>Montant : <b>'+(PY.pl=="c"?"1 000":"500")+" FCFA</b></p>"}
+$("wa").onclick=function(){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent("Bonjour EnoDev 🎁 Je veux ma surprise. Formule : "+(PY.pl=="c"?"Complète (1 000 FCFA)":"Simple (500 FCFA)")+". J’ai payé par "+PY.op+"."),"_blank")};
+pay();
+function ext(f){return(f.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,5)||"bin"}
+async function up(id,n,f){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+n,{method:"POST",headers:{apikey:K,"Content-Type":f.type||"application/octet-stream"},body:f});if(!r.ok)throw new Error(n+" "+r.status);return U+"/storage/v1/object/public/photos/"+id+"/"+n}
+var P=document.querySelectorAll(".stp"),cur=0;
+function go(n){cur=Math.max(0,Math.min(P.length-1,n));Array.prototype.forEach.call(P,function(e,i){e.style.display=i==cur?"block":"none"});$("pg").style.width=(cur+1)/P.length*100+"%";$("pt").textContent="Étape "+(cur+1)+" sur "+P.length;$("bk").style.visibility=cur?"visible":"hidden";$("nx").style.display=cur==P.length-1?"none":"inline-block";$("msg").textContent="";scrollTo(0,0)}
+$("bk").onclick=function(){go(cur-1)};$("nx").onclick=function(){if(cur==0&&!D.nm.trim()){$("msg").textContent="Écris d’abord son prénom.";$("nm").focus();return}go(cur+1)};
+var EM=["💝","📸","💌","❤️","🧩","✨","🎵","💳","🚀"],CL=["#C8325F","#E8A93F","#7A5AF8","#E8708A","#0E8F83","#F5C26B","#3B82F6","#0E8F83","#C8325F"];
+Array.prototype.forEach.call(P,function(e,i){e.style.setProperty("--sc",CL[i%9]);e.insertAdjacentHTML("afterbegin",'<div class="ei">'+EM[i%9]+"</div>")});
+go(0);
 $("aq").onclick=function(){var q=$("qq").value.trim(),o=[0,1,2].map(function(i){return $("qa"+i).value.trim()}),a=+document.querySelector("input[name=qc]:checked").value;
 if(!q||o.filter(Boolean).length<2||!o[a]){$("msg").textContent="Écris la question, au moins 2 réponses, et coche la bonne.";return}
 if(D.qz.length>=5){$("msg").textContent="5 questions maximum.";return}
 var oo=[],na=0;o.forEach(function(t,i){if(t){if(i==a)na=oo.length;oo.push(t)}});D.qz.push({q:q,o:oo,a:na});["qq","qa0","qa1","qa2"].forEach(function(i){$(i).value=""});$("msg").textContent="";rq()};
-$("pvb").onclick=function(){show(Object.assign({},D,{ex:ex()}),true)};$("pvx").onclick=function(){$("pv").style.display="none"};
+$("pvb").onclick=function(){show(Object.assign({},D,{ex:ex()}),true)};$("pvx").onclick=function(){$("pv").style.display="none";$("pvc").innerHTML="";Array.prototype.forEach.call($("pv").querySelectorAll(".mb"),function(z){z.remove()})};
 $("go").onclick=async function(){var cd=$("cd").value.trim(),H={apikey:K,"Content-Type":"application/json"};
 if(!cd){$("msg").textContent="Entre ton code d’accès.";$("cd").focus();return}
 if(!D.ph.length&&!D.lt.length){$("msg").textContent="Ajoute au moins une photo ou une lettre.";return}
@@ -129,9 +183,11 @@ var b=this;b.disabled=true;$("msg").textContent="Vérification du code…";
 try{var r0=await fetch(U+"/rest/v1/rpc/claim_code",{method:"POST",headers:H,body:JSON.stringify({p_code:cd})}),c=await r0.json();
 if(!r0.ok)throw{user:/utilis/.test(c.message||"")?"Ce code a déjà servi.":"Code invalide."};
 if(D.ph.length>c.max_photos)throw{user:"Ton code permet "+c.max_photos+" photos maximum. Retire-en quelques-unes."};
-var id=c.id,ph=[];$("msg").textContent="Envoi en cours… ne ferme pas la page.";
+if((D.mu||D.vd)&&c.max_photos<10)throw{user:"La musique et la vidéo sont réservées à la formule complète."};
+var id=c.id,ph=[];$("msg").textContent="Envoi en cours… ne ferme pas la page (les vidéos peuvent prendre du temps).";
 for(var i=0;i<D.ph.length;i++){var r=await fetch(U+"/storage/v1/object/photos/"+id+"/"+i+".jpg",{method:"POST",headers:{apikey:K,"Content-Type":"image/jpeg"},body:D.ph[i].blob});if(!r.ok){var tx="";try{tx=(await r.text()).slice(0,140)}catch(z){}throw new Error("photo "+r.status+" "+tx)}ph.push({src:U+"/storage/v1/object/public/photos/"+id+"/"+i+".jpg",cap:D.ph[i].cap})}
-var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt,p_extra:ex()})});
+var X=ex();X.music=D.mu?await up(id,"music."+ext(D.mu.f),D.mu.f):"";X.video=D.vd?await up(id,"video."+ext(D.vd.f),D.vd.f):"";
+var r2=await fetch(U+"/rest/v1/rpc/publish_surprise",{method:"POST",headers:H,body:JSON.stringify({p_id:id,p_name:D.nm,p_title:D.ti,p_date:D.dt||null,p_photos:ph,p_letters:D.lt,p_extra:X})});
 if(!r2.ok)throw new Error("base "+r2.status);
 LINK=location.origin+location.pathname+"?s="+id;$("lk").textContent=LINK;$("cp").style.display="inline-block";$("msg").textContent="Ton lien est prêt ! Il reste actif 30 jours. Envoie-le-lui.";
 }catch(e){$("msg").textContent=e.user||("Échec de l’envoi ("+e.message+"). Réessaie.")}b.disabled=false};
@@ -141,5 +197,6 @@ if(sid){$("mk").style.display="none";$("pv").style.display="block";$("pvc").inne
 fetch(U+"/rest/v1/rpc/get_surprise",{method:"POST",headers:{apikey:K,"Content-Type":"application/json"},body:JSON.stringify({p_id:sid})}).then(function(r){return r.json()}).then(function(d){if(Array.isArray(d))d=d[0];
 if(!d||!d.id)throw 0;show({nm:d.name,ti:d.title,dt:d.event_date,ph:d.photos||[],lt:d.letters||[],ex:d.extra||{}},false)}).catch(function(){$("pvc").innerHTML='<div id="c"><div class="e">🔍</div><p>Cette surprise n’est plus disponible. Elle a peut-être expiré.</p></div>'})}
 else try{var r=JSON.parse(localStorage.getItem("enodev-3")||"null");if(r){D.nm=r.nm||"";D.ti=r.ti||"";D.dt=r.dt||"";D.lt=r.lt||[];$("nm").value=D.nm;$("ti").value=D.ti;$("dt").value=D.dt;rl()}}catch(e){}
+if(!sid){var HE=["💗","✨","🎁","💌","🎉"];for(var hi=0;hi<9;hi++){var hs=document.createElement("span");hs.className="fh";hs.textContent=HE[hi%5];hs.style.left=(hi*11+Math.random()*6)+"%";hs.style.animationDuration=(10+Math.random()*8)+"s";hs.style.animationDelay=(-Math.random()*12)+"s";document.body.appendChild(hs)}}
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script></body></html>
