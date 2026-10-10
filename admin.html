@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>EnoDev · Tableau de bord</title>
+<style>
+:root{--bg:#14102a;--card:#1f1a3d;--line:#352d63;--tx:#f4efff;--mut:#a79fcf;--acc:#f2c14e;--ok:#6ee7a8}
+@media (prefers-color-scheme:light){:root{--bg:#f6f3ff;--card:#fff;--line:#ddd6f5;--tx:#241b4d;--mut:#6b6396;--acc:#b8860b;--ok:#0f8a52}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,sans-serif;padding:16px;padding-top:max(16px,env(safe-area-inset-top))}
+main{max-width:520px;margin:0 auto}
+h1{font-size:22px;margin:4px 0 14px}
+input,button{font:inherit;width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--tx);margin-bottom:10px}
+button{background:var(--acc);color:#1a1405;border:0;font-weight:700;cursor:pointer}
+button.alt{background:var(--card);color:var(--tx);border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.c b{display:block;font-size:26px;color:var(--acc)}
+.c span{color:var(--mut);font-size:13px}
+.wide{grid-column:1/-1}
+.wide b{color:var(--ok);font-size:30px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-weight:600}
+.err{color:#ff8a8a;min-height:20px}
+.hint{color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>EnoDev · Tableau de bord 🎁</h1>
+
+<div id="lg">
+<input id="pw" type="password" placeholder="Mot de passe" autocomplete="current-password" aria-label="Mot de passe">
+<button id="ok">Entrer</button>
+<p class="err" id="er"></p>
+</div>
+
+<div id="db" style="display:none">
+<div class="grid">
+<div class="c wide"><b id="rev">0</b><span>Revenu estimé (FCFA)</span></div>
+<div class="c"><b id="cu">0</b><span>Codes utilisés</span></div>
+<div class="c"><b id="cr">0</b><span>Codes restants</span></div>
+<div class="c"><b id="si">0</b><span>Formule Simple</span></div>
+<div class="c"><b id="co">0</b><span>Formule Complète</span></div>
+<div class="c"><b id="sc">0</b><span>Surprises créées</span></div>
+<div class="c"><b id="vu">0</b><span>Ouvertures totales</span></div>
+<div class="c"><b id="ac">0</b><span>Encore en ligne</span></div>
+<div class="c"><b id="s7">0</b><span>Créées sur 7 jours</span></div>
+</div>
+
+<div class="c">
+<span>Dernières surprises</span>
+<table><thead><tr><th>Créée le</th><th>Vues</th><th>Expire le</th></tr></thead><tbody id="ls"></tbody></table>
+</div>
+
+<p class="hint">Le revenu compte les codes utilisés (500 ou 1 000 FCFA selon la formule), y compris tes codes de test.</p>
+<button class="alt" id="rf">Actualiser</button>
+<button class="alt" id="lo">Quitter</button>
+</div>
+</main>
+
+<script>
+var U="https://tpcsnsgorjywocpewtnl.supabase.co",K="sb_publishable_VBXYNuPyY3wDzcLtCpopBA_X_byMr5h";
+var $=function(i){return document.getElementById(i)},PW="";
+function n(x){return Number(x||0).toLocaleString("fr-FR")}
+function d(x){if(!x)return"—";try{return new Date(x).toLocaleDateString("fr-FR",{day:"2-digit",month:"short"})}catch(e){return"—"}}
+async function load(){
+  $("er").textContent="";
+  try{
+    var r=await fetch(U+"/rest/v1/rpc/admin_stats",{method:"POST",headers:{apikey:K,"Content-Type":"application/json"},body:JSON.stringify({p_pw:PW})});
+    var j=await r.json();
+    if(!r.ok)throw new Error(r.status==400||r.status==401||r.status==403?"denied":"net");
+    $("lg").style.display="none";$("db").style.display="block";
+    $("rev").textContent=n(j.revenu);$("cu").textContent=n(j.codes_utilises);$("cr").textContent=n(j.codes_restants);
+    $("si").textContent=n(j.simple);$("co").textContent=n(j.complete);$("sc").textContent=n(j.surprises);
+    $("vu").textContent=n(j.vues);$("ac").textContent=n(j.actives);$("s7").textContent=n(j.sept_jours);
+    var h="";(j.dernieres||[]).forEach(function(s){h+="<tr><td>"+d(s.created_at)+"</td><td>"+n(s.views)+"</td><td>"+d(s.expires_at)+"</td></tr>"});
+    $("ls").innerHTML=h||'<tr><td colspan="3" class="hint">Aucune surprise pour l’instant.</td></tr>';
+  }catch(e){
+    PW="";
+    $("er").textContent=e.message=="denied"?"Mot de passe incorrect.":"Connexion impossible. Vérifie internet (ou relance Supabase s’il est en pause).";
+  }
+}
+$("ok").onclick=function(){PW=$("pw").value;if(!PW){$("er").textContent="Entre le mot de passe.";return}load()};
+$("pw").onkeydown=function(e){if(e.key=="Enter")$("ok").click()};
+$("rf").onclick=load;
+$("lo").onclick=function(){PW="";$("pw").value="";$("db").style.display="none";$("lg").style.display="block"};
+</script>
+</body>
+</html>
